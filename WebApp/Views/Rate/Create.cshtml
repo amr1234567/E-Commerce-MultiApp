@@ -1,0 +1,41 @@
+﻿@model Core.Rate
+
+@{
+    ViewData["Title"] = "Create";
+    var productName = (string)ViewBag.ProductName;
+    var productId = (int)ViewBag.ProductId;
+}
+
+<h1>Add Rate for @productName</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+             <input hidden asp-for="ProductId" value="@productId"/>
+            <div class="form-group mb-2">
+                <label class="control-label">Product Name</label>
+                <input readonly asp-for="ProductName" value="@productName" class="form-control" />
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="RateNum" class="control-label"></label>
+                <input asp-for="RateNum" class="form-control" />
+                <span asp-validation-for="RateNum" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Comment" class="control-label"></label>
+                <input asp-for="Comment" class="form-control" />
+                <span asp-validation-for="Comment" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <input type="submit" value="Add Rate" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

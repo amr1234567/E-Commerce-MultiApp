@@ -17,8 +17,17 @@ namespace Service
         }
         public void AddRate(Rate rate)
         {
-            if (rates != null)
+            if (rates != null && rates.Count() > 0 && rate != null)
+            {
+                var id = rates.Max(p => p.Id);
+                rate.Id = id + 1;
                 rates.Add(rate);
+            }
+            else if (rate != null && rates != null && rates.Count() == 0)
+            {
+                rate.Id = 1;
+                rates.Add(rate);
+            }
         }
 
         public Rate GetRateById(int Rateid)

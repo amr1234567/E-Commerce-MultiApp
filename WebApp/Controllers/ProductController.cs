@@ -59,7 +59,7 @@ namespace WebApp.Controllers
                 editProduct.Execute(product);
                 return RedirectToAction(nameof(Index));
             }
-            return View(GetProduct.Execute(id));
+            return BadRequest(ModelState);
         }
         
         public IActionResult Delete(int id)
@@ -89,7 +89,7 @@ namespace WebApp.Controllers
                 addProduct.Execute(product);
                 return RedirectToAction(nameof(Index));
             }
-            return View();
+            return BadRequest(ModelState);
         }
     }
 }

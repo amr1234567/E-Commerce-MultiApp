@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Core.Rate>
+
+@{
+    ViewData["Title"] = "GetRatesPerProduct";
+    var productName = (string)ViewBag.productName;
+}
+
+<p>
+    <h2>@productName</h2>
+</p>
+
+@foreach (var item in Model) {
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">
+                @Html.DisplayNameFor(model => item.RateNum)  : @Html.DisplayFor(model => item.RateNum)
+            </h5>
+            <p class="card-text">@Html.DisplayFor(model => item.Comment)</p>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id ,productId = item.ProductId})
+        </div>
+    </div>
+}
+

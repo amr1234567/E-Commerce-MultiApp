@@ -26,10 +26,34 @@ namespace Service
         };
         public static List<Rate> rates = new List<Rate>()
         {
-            new Rate{Id=1,Comment="Comment",ProductId=3,ProductName="IPhone",RateNum=4},
-            new Rate{Id=2,Comment="Comment",ProductId=3,ProductName="IPhone",RateNum=2.5},
-            new Rate{Id=3,Comment="Comment",ProductId=3,ProductName="IPhone",RateNum=5},
-            new Rate{Id=4,Comment="Comment",ProductId=3,ProductName="IPhone",RateNum=3.4},
+            new Rate{
+                Id=1,
+                Comment="Comment Comment Comment Comment Comment Comment Comment Comment ",
+                ProductId=3,
+                ProductName="IPhone",
+                RateNum=4
+            },
+            new Rate{
+                Id=2,
+                Comment="Comment Comment Comment Comment Comment Comment Comment Comment ",
+                ProductId=3,
+                ProductName="IPhone",
+                RateNum=2.5
+            },
+            new Rate{
+                Id=3,
+                Comment="Comment Comment Comment Comment Comment Comment Comment Comment ",
+                ProductId=3,
+                ProductName="IPhone",
+                RateNum=5
+            },
+            new Rate{
+                Id=4,
+                Comment="Comment Comment Comment Comment Comment Comment Comment Comment ",
+                ProductId=3,
+                ProductName="IPhone",
+                RateNum=3.4
+            },
         };
 
         public static List<Transaction> transactions = new List<Transaction>();

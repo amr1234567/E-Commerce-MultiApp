@@ -1,5 +1,6 @@
 ﻿using Core;
 using IService.IServiceContract;
+using IService.UseCasesInterfaces.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,17 @@ namespace Service
 {
     public class CategoryServiceInMemory : ICategoryService
     {
+        private readonly IDeleteProductUseCase deleteProduct;
+        private readonly IGetProductsByCategoryIdUseCase getProductsByCategoryId;
         private List<Category> categories;
-        public CategoryServiceInMemory()
+        public CategoryServiceInMemory(
+            IDeleteProductUseCase deleteProduct,
+            IGetProductsByCategoryIdUseCase getProductsByCategoryId)
         {
 
             categories = DumyData.categories;
+            this.deleteProduct = deleteProduct;
+            this.getProductsByCategoryId = getProductsByCategoryId;
         }
         public void AddCategory(Category category)
         {
@@ -40,6 +47,9 @@ namespace Service
             var category = GetCategoryById(id);
             if(category != null)
             {
+                var products = getProductsByCategoryId.Execute(category.Id);
+                foreach(var product in products)
+                    deleteProduct.Execute(product.Id);
                 categories.Remove(category);
             }
         }
