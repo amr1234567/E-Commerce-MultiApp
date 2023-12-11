@@ -14,7 +14,7 @@ namespace Service
 
         public TransactionServiceInMemory()
         {
-            _transactions = new List<Transaction>();
+            _transactions = DumyData.transactions;
         }
         public void AddTransaction(Transaction transaction)
         {
@@ -28,8 +28,7 @@ namespace Service
             if (trans != null)
             {
                 trans.TotalPrice = transaction.TotalPrice;
-                trans.SoldQty = transaction.SoldQty;
-                trans.Products = transaction.Products;
+                trans.numberOfSoldProducts = transaction.numberOfSoldProducts;
                 trans.IsDone = transaction.IsDone;
             }
         }

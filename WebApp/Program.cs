@@ -25,6 +25,7 @@ builder.Services.AddScoped<ICategoryService, CategoryServiceInMemory>();
 
 //UseCases
 
+
 // -- Products --
 
 builder.Services.AddScoped<IAddProductUseCase,AddProductUseCase>();
@@ -34,6 +35,7 @@ builder.Services.AddScoped<IUpdateProductUseCase,UpdateProductUseCase>();
 builder.Services.AddScoped<IGetProductByIdUseCase,GetProductByIdUseCase>();
 builder.Services.AddScoped<IGetProductsByCategoryIdUseCase,GetProductsByCategoryIdUseCase>();
 
+
 // -- Category --
 
 builder.Services.AddScoped<IAddCategoryUseCase, AddCategoryUseCase>();
@@ -41,6 +43,7 @@ builder.Services.AddScoped<IUpdateCategoryUseCase, UpdateCategoryUseCase>();
 builder.Services.AddScoped<IDeleteCategoryUseCase, DeleteCategoryUseCase>();
 builder.Services.AddScoped<IGetCategoriesUseCase, GetCategoriesUseCase>();
 builder.Services.AddScoped<IGetCategoryByIdUseCase, GetCategoryByIdUseCase>();
+
 
 // -- Rate -- 
 
@@ -51,6 +54,7 @@ builder.Services.AddScoped<IGetRateByIdUseCase, GetRateByIdUseCase>();
 builder.Services.AddScoped<IGetRateListByProductIdUseCase, GetRateListByProductIdUseCase>();
 
 // -- Transactions --
+
 builder.Services.AddScoped<IGetAllTransactionsUseCase, GetAllTransactionsUseCase>();
 builder.Services.AddScoped<IGetTransactionByIdUseCase, GetTransactionByIdUseCase>();
 builder.Services.AddScoped<IRemoveTransactionUseCase, RemoveTransactionUseCase>();

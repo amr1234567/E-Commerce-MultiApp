@@ -14,13 +14,7 @@ namespace Service
         public CategoryServiceInMemory()
         {
 
-            categories = new List<Category>()
-            {
-                new Category{ Name= "Laptop",Description="Tech",Id=1},
-                new Category{ Name= "Phone",Description="Tech",Id=2},
-                new Category{ Name= "GraphicCards",Description="Tech",Id=3},
-                new Category{ Name= "StorageDisk",Description="Tech",Id=4}
-            };
+            categories = DumyData.categories;
         }
         public void AddCategory(Category category)
         {

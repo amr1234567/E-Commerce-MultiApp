@@ -13,18 +13,22 @@ namespace Service
         private List<Product> products;
         public ProductServiceInMemory()
         {
-            products = new List<Product>()
-            {
-                new Product { Id = 1,Name="Redmi",CategoryId=2,Price=5000,Quantity=10,Rate=5},
-                new Product { Id = 2,Name="Rtx5090ti",CategoryId=3,Price=100000,Quantity=10,Rate=5},
-                new Product { Id = 3,Name="IPhone",CategoryId=2,Price=40000,Quantity=10,Rate=5},
-                new Product { Id = 4,Name="Hdd 1Tb",CategoryId=4,Price=700,Quantity=10,Rate=5},
-            };
+            products = DumyData.Products;
         }
         public void AddProduct(Product product)
         {
-            if (products != null)
+            if (products != null && products.Count() > 0 && product != null)
+            {
+                var id = products.Max(p => p.Id);
+                product.Id = id + 1;
                 products.Add(product);
+            }
+            else if (product != null && products != null && products.Count() == 0)
+            {
+                product.Id = 1;
+                products.Add(product);
+            }
+            
         }
 
         public void DeleteProduct(int Id)
