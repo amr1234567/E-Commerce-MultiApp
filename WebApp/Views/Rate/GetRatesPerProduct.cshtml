@@ -3,22 +3,27 @@
 @{
     ViewData["Title"] = "GetRatesPerProduct";
     var productName = (string)ViewBag.productName;
+    var productId = (int)ViewBag.productId;
 }
 
 <p>
-    <h2>@productName</h2>
+    <h2 class="ms-3">@productName</h2>
 </p>
 
 @foreach (var item in Model) {
-    <div class="card">
+    <div class="card mb-3">
         <div class="card-body">
             <h5 class="card-title">
                 @Html.DisplayNameFor(model => item.RateNum)  : @Html.DisplayFor(model => item.RateNum)
             </h5>
+            <hr style="width:25%;"/>
             <p class="card-text">@Html.DisplayFor(model => item.Comment)</p>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id ,productId = item.ProductId})
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "text-success" }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id ,productId = item.ProductId} ,new{@class="text-danger"})
         </div>
     </div>
 }
+
+@Html.ActionLink("Go Back To The Product Details", "Details","Product",new {id = productId} , new { @class = "ms-3"})
+
 

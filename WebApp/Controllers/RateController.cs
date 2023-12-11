@@ -36,6 +36,7 @@ namespace WebApp.Controllers
         public ActionResult GetRatesPerProduct(int id)
         {
             ViewBag.productName = getProductById.Execute(id).Name;
+            ViewBag.productId = id;
             var rates = getRateListByProductId.Execute(id);
             return View(rates);
         }
