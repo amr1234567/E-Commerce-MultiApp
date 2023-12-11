@@ -18,9 +18,20 @@ namespace Service
         }
         public void AddCategory(Category category)
         {
-            if(category !=null)
+            if (categories != null && categories.Count() > 0 && category != null)
             {
+                var id = categories.Max(p => p.Id);
+                category.Id = id + 1;
                 categories.Add(category);
+            }
+            else if (category != null && categories != null && categories.Count() == 0)
+            {
+                category.Id = 1;
+                categories.Add(category);
+            }
+            if (category !=null)
+            {
+                categories?.Add(category);
             }
         }
 
