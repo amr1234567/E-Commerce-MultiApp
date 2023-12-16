@@ -1,15 +1,30 @@
 using IService.IServiceContract;
+using IService.UseCases.Account;
 using IService.UseCases.Categorys;
 using IService.UseCases.Products;
 using IService.UseCases.Rates;
 using IService.UseCases.Transactions;
+using IService.UseCasesInterfaces.Account;
 using IService.UseCasesInterfaces.Categorys;
 using IService.UseCasesInterfaces.Products;
 using IService.UseCasesInterfaces.Rates;
 using IService.UseCasesInterfaces.Transactions;
 using Service;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using WebApp.Data;
+using Core;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("AccountContextConnection") ?? throw new InvalidOperationException("Connection string 'AccountContextConnection' not found.");
+
+builder.Services.AddDbContext<AccountContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddIdentity<AccountIdentityUser,IdentityRole>()
+    .AddEntityFrameworkStores<AccountContext>()
+    .AddDefaultUI()
+    .AddDefaultTokenProviders();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -21,6 +36,7 @@ builder.Services.AddScoped<IProductService, ProductServiceInMemory>();
 builder.Services.AddScoped<ITransactionService, TransactionServiceInMemory>();
 builder.Services.AddScoped<IRateService, RateServiceInMemory>();
 builder.Services.AddScoped<ICategoryService, CategoryServiceInMemory>();
+builder.Services.AddScoped<IAccountRepositry, AccountServiceInMemory>();
 
 
 //UseCases
@@ -63,6 +79,10 @@ builder.Services.AddScoped<IEditTransactionUseCase, EditTransactionUseCase>();
 builder.Services.AddScoped<IAddTransactionUSeCase, AddTransactionUSeCase>();
 
 
+//-- Account --
+builder.Services.AddScoped<ISignInUseCase, SignInUseCase>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -80,6 +100,9 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.UseEndpoints(endpoints =>
+    endpoints.MapRazorPages()
+    );
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

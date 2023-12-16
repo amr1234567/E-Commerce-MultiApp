@@ -57,5 +57,9 @@ namespace Service
         };
 
         public static List<Transaction> transactions = new List<Transaction>();
+        //public static List<Account> accounts = new List<Account>()
+        //{
+        //    new Account{Id = new Guid(),Email="a@a.com",Name="Amr Shalaby",Phone=01152899886,Password="12345678"}
+        //};
     }
 }
